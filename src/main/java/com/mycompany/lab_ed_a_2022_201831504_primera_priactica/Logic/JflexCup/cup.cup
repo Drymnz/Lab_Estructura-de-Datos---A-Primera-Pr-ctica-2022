@@ -1,0 +1,108 @@
+/*************************************CODE******************************************************/
+package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup;
+
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Client;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
+
+import java_cup.runtime.*;
+    parser code {:
+        
+	public parser(Lexema lexer) {
+        super(lexer);
+        }
+
+        public void syntax_error(Symbol cur_token) {
+        //System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
+        //System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
+        }
+
+        public void unrecovered_syntax_error(Symbol cur_token) {
+            if (cur_token.sym == sym.EOF) {
+             System.out.println("public void unrecoveredsyntax_error!!!!!!!!!!!!!!");
+            }
+        }
+    /*
+    code
+     */
+    private ListSimple<Bet> listBet;
+    private String name;
+    private int[] horse = null;
+    private int conter = 10;
+    private double money = 0;
+
+    private void restart() {
+        this.conter = 10;
+        this.money = 0;
+        this.horse = null;
+        this.name = "";
+    }// 4  = > o(1)
+
+    private void insertHorse(int add) {
+        if (this.horse == null) {
+            this.horse = new int[this.conter];
+            this.horse[this.conter - 1] = add;
+        }
+        if (this.conter >= 1) {
+            this.horse[this.conter - 1] = add;
+        }
+        this.conter--;
+    }// 5  = > o(1)
+
+    private void addBet() {
+        boolean checker = (this.conter < 10) && (this.money > 0) && (this.horse != null) && (!this.name.isBlank());
+        if (checker) {
+            if (listBet==null) {
+                listBet = new ListSimple<>(new Bet(new Client(name),horse,money));
+            } else {
+            }
+            listBet.add(new Bet(new Client(name),horse,money));
+        }
+        restart();
+    }// 12  = > o(1)
+     public ListSimple<Bet> getListBet() {
+        return listBet;
+    }
+    /*
+    code
+     */
+
+:}
+/*************************************TERMINALES******************************************************/
+terminal SALTO,MONTO,ENTERO;/**/
+terminal MAYOR,MENOR;
+terminal NOMBRE;/*<nombre>*/
+terminal TENTH,NINTH,EIGHTH,SEVENTH,SIXTH,FIFTH,FOURTH,THIRD,SECOND,FIRST;
+/*************************************NO TERMINALES******************************************************/
+non terminal i,d,m,c,n,l; /*terminal donde inicia*/
+/*************************************PRECEDENCIA******************************************************/
+//precedence left MULTIPLICAR, DIVIDIR;
+/*************************************GRAMATICA******************************************************/
+start with i;
+/******operaciones matematicas*****/
+i::= d i 
+| error
+;
+d ::= c d 
+|m d
+|n d
+| SALTO {:addBet();:}
+| error
+;
+n ::= NOMBRE:e {:name = e.toString();:};
+m ::= MENOR MONTO:m MAYOR {:money = Double.valueOf(m.toString());:}
+| MENOR ENTERO:m MAYOR {:money = Double.valueOf(m.toString());:}
+;
+c ::= MENOR l MAYOR 
+;
+l ::= TENTH{:insertHorse(10);:}
+|NINTH  {:insertHorse(9);:}
+|EIGHTH {:insertHorse(8);:}
+|SEVENTH{:insertHorse(7);:}
+|SIXTH  {:insertHorse(6);:}
+|FIFTH  {:insertHorse(5);:}
+|FOURTH {:insertHorse(4);:}
+|THIRD  {:insertHorse(3);:}
+|SECOND {:insertHorse(2);:}
+|FIRST  {:insertHorse(1);:}
+;
