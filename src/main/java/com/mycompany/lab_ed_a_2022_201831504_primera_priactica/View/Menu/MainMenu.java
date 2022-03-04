@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import java.awt.Graphics;
@@ -13,6 +14,8 @@ import java.awt.Graphics;
  * @author Benjamín de Jesús Pérez Aguilar
  */
 public class MainMenu extends javax.swing.JPanel {
+
+    private Thread hilo = new Thread(new CheckerBut());
 
     /**
      * Creates new form mainMenu
@@ -25,7 +28,6 @@ public class MainMenu extends javax.swing.JPanel {
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,6 +56,11 @@ public class MainMenu extends javax.swing.JPanel {
         jButtonCloseBut.setText("cierre apuestas");
 
         JButtonVerifyBet.setText("Verificar apuestas");
+        JButtonVerifyBet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonVerifyBetActionPerformed(evt);
+            }
+        });
 
         jButtonIncomeResults.setText("Ingreso de resultados");
 
@@ -91,8 +98,15 @@ public class MainMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddButActionPerformed
-      if (Start.window!=null)  Start.window.goAddBet();
+        if (Start.window != null)
+            Start.window.goAddBet();
     }//GEN-LAST:event_jButtonAddButActionPerformed
+
+    private void JButtonVerifyBetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonVerifyBetActionPerformed
+        if (!hilo.isAlive()) {
+            hilo.start();
+        } 
+    }//GEN-LAST:event_JButtonVerifyBetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -38,7 +38,6 @@ public class Window extends JFrame{
     public void goMain() {
         file.show(panel, "MainMenu");
         restoreWindow(338, 620, "Hipodromo");
-        System.out.println(Start.listBet);
     }
     public void goAddBet() {
         file.show(panel, "addBetWindow");

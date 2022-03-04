@@ -5,6 +5,7 @@
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker;
 
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 
 /**
  *
@@ -12,19 +13,36 @@ import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
  */
 public class CheckerBut implements Runnable {
 
-    private Bet bet;
-    private boolean[] horseStandingsList;
+    private final int total = 55;
 
 
     private void checkerBut() {
-        if (this.bet != null) {
-
+        Start.listBet.movenStart();//1
+        boolean begin = (Start.listBet!=null)&& Start.listBet.getSpotter()!=null;//2
+        while (begin) {            //n
+           begin = !(Start.listBet.getSpotter().getNext()==null);//n
+           Bet bet = (Bet) Start.listBet.getSpotter().getObject(); //n
+            if (sumTotal(bet.getListHourse(), 0, (bet.getListHourse().length-1)) != this.total) {//n+17
+                Start.listBet.removeSpotter();//n
+            }else{
+                Start.listBet.movenNext();//n
+            }
         }
-    }
+    }//5n+20 => O(n)
+    private int sumTotal(int[] list,int start,int end){//3
+        if (start == end ) {//1
+            return list[end];//1
+        } else {
+            int mid = (start+end) / 2;//3
+            int left = sumTotal(list, start, mid);//3
+            int right = sumTotal(list, mid+1, end);//3
+            return right + left ;//2
+        }
+    }//17 => O(1)
 
     @Override
     public void run() {
-
+        checkerBut();//5n+20 => O(n)
     }
 
 }
