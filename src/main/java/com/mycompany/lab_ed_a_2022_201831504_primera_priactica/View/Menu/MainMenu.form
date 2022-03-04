@@ -78,6 +78,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingreso de resultados"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncomeResultsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtondeLiveryResults">
       <Properties>

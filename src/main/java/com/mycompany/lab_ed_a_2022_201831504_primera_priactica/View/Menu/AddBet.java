@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Client;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.FileManager.FileManagerIn;
@@ -204,15 +205,19 @@ public class AddBet extends javax.swing.JPanel {
 //add a bet to the list
     private void jButtonAddOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddOneActionPerformed
         if (!name.getText().isBlank() && !amount.getText().isBlank()) {
-            if (Start.listBet == null) {
-                try {
-                    Start.listBet = new ListSimple<>(new Bet(new Client(name.getText()), manualAddBet1.listNum(), Double.valueOf(amount.getText())));
+            try {
+                if ((new CheckerBut().sumTotal(manualAddBet1.listNum(), 0, manualAddBet1.listNum().length - 1)) == 55) {
+                    if (Start.listBet == null) {
+                        Start.listBet = new ListSimple<>(new Bet(new Client(name.getText()), manualAddBet1.listNum(), Double.valueOf(amount.getText())));
+                    } else {
+                        Start.listBet.add(new Bet(new Client(name.getText()), manualAddBet1.listNum(), Double.valueOf(amount.getText())));
+                    }
                     reset();
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Un caballo ser repite");
                 }
-            } else {
-                Start.listBet.add(new Bet(new Client(name.getText()), manualAddBet1.listNum(), Double.valueOf(amount.getText())));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         } else {
             JOptionPane.showMessageDialog(null, "llena las casillas");

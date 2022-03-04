@@ -63,6 +63,11 @@ public class MainMenu extends javax.swing.JPanel {
         });
 
         jButtonIncomeResults.setText("Ingreso de resultados");
+        jButtonIncomeResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncomeResultsActionPerformed(evt);
+            }
+        });
 
         jButtondeLiveryResults.setText("Entrega de resultados");
 
@@ -107,6 +112,11 @@ public class MainMenu extends javax.swing.JPanel {
             hilo.start();
         } 
     }//GEN-LAST:event_JButtonVerifyBetActionPerformed
+
+    private void jButtonIncomeResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncomeResultsActionPerformed
+        if (Start.window != null)
+            Start.window.goResults();
+    }//GEN-LAST:event_jButtonIncomeResultsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
