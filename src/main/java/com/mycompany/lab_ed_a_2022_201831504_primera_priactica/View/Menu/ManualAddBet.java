@@ -13,37 +13,51 @@ import javax.swing.SpinnerNumberModel;
  * @author Benjamín de Jesús Pérez Aguilar
  */
 public class ManualAddBet extends javax.swing.JPanel {
-    private SpinnerModel model = new SpinnerNumberModel(1, 1, 10, 1);
 
     /**
      * Creates new form ManualAddBet
      */
     public ManualAddBet() {
         initComponents();
-        numFirst.setModel(model);
-        numSecond.setModel(model);
-        numTenth.setModel(model);
-        numFourth.setModel(model);
-        numFifth.setModel(model);
-        numSixth.setModel(model);
-        numSeventh.setModel(model);
-        numEighth.setModel(model);
-        numNinth.setModel(model);
-        numTenth.setModel(model);
+        numFirst.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numSecond.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numThird.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numFourth.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numFifth.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numSixth.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numSeventh.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numEighth.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numNinth.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        numTenth.setModel(new SpinnerNumberModel(1, 1, 10, 1));
     }
-    public int[] listNum(){
+
+    public int[] listNum() {
         int[] list = new int[10];
         list[0] = (int) numFirst.getValue();
-        list[1] = (int)numSecond.getValue();
-        list[2] = (int)numTenth.getValue();
-        list[3] = (int)numFourth.getValue();
-        list[4] = (int)numFifth.getValue();
-        list[5] = (int)numSixth.getValue();
-        list[6] = (int)numSeventh.getValue();
-        list[7] = (int)numEighth.getValue();
-        list[8] = (int)numNinth.getValue();
-        list[9] = (int)numTenth.getValue();
+        list[1] = (int) numSecond.getValue();
+        list[2] = (int) numThird.getValue();
+        list[3] = (int) numFourth.getValue();
+        list[4] = (int) numFifth.getValue();
+        list[5] = (int) numSixth.getValue();
+        list[6] = (int) numSeventh.getValue();
+        list[7] = (int) numEighth.getValue();
+        list[8] = (int) numNinth.getValue();
+        list[9] = (int) numTenth.getValue();
         return list;
+    }
+
+    public void listRestart() {
+        int[] list = new int[10];
+        numFirst.setValue(1);
+        numSecond.setValue(1);
+        numThird.setValue(1);
+        numFourth.setValue(1);
+        numFifth.setValue(1);
+        numSixth.setValue(1);
+        numSeventh.setValue(1);
+        numEighth.setValue(1);
+        numNinth.setValue(1);
+        numTenth.setValue(1);
     }
 
     /**

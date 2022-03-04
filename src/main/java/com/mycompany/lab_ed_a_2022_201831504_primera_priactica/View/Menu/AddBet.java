@@ -4,13 +4,30 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Client;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.FileManager.FileManagerIn;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup.Lexema;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup.parser;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Benjamín de Jesús Pérez Aguilar
  */
 public class AddBet extends javax.swing.JPanel {
+
+    private Lexema lexema;
+    private parser parser;
 
     /**
      * Creates new form AddBet
@@ -33,6 +50,12 @@ public class AddBet extends javax.swing.JPanel {
         jTextArea = new javax.swing.JTextArea();
         jButtonAnalyze = new javax.swing.JButton();
         jButtonAddFile = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        amount = new javax.swing.JTextField();
+        manualAddBet1 = new com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.ManualAddBet();
+        jButtonAddOne = new javax.swing.JButton();
 
         bottonBack.setText("Atras");
         bottonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -46,25 +69,63 @@ public class AddBet extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea);
 
         jButtonAnalyze.setText("Añadir texto");
+        jButtonAnalyze.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnalyzeActionPerformed(evt);
+            }
+        });
 
         jButtonAddFile.setText("Ingresar Archivo");
+        jButtonAddFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddFileActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Nombre :");
+
+        jLabel2.setText("Monto :");
+
+        jButtonAddOne.setText("Añadir");
+        jButtonAddOne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddOneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bottonBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAddFile)))
+                        .addGap(121, 121, 121)
+                        .addComponent(jButtonAnalyze))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(manualAddBet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(name)
+                                    .addComponent(amount)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bottonBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonAddFile)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jButtonAnalyze)
+                .addGap(114, 114, 114)
+                .addComponent(jButtonAddOne)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,24 +135,102 @@ public class AddBet extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bottonBack)
                     .addComponent(jButtonAddFile))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAnalyze)
-                .addContainerGap(330, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(manualAddBet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAddOne)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+// back to main
     private void bottonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonBackActionPerformed
-       if (Start.window!=null)  Start.window.goMain();
+        if (Start.window != null)
+            Start.window.goMain();
     }//GEN-LAST:event_bottonBackActionPerformed
+//analyzes and adds the analyzed bets to the list
+    private void jButtonAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalyzeActionPerformed
+        if (!jTextArea.getText().isBlank()) {
+            String seand = jTextArea.getText() + "\n";
+            Reader reader = new StringReader(seand);
+            lexema = new Lexema(reader);
+            parser = new parser(lexema);
+            try {
+                parser.parse();
+                jTextArea.setText("");
+            } catch (IOException ex) {
+                Logger.getLogger(AddBet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(AddBet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "por favor ingrese ");
+        }
+    }//GEN-LAST:event_jButtonAnalyzeActionPerformed
+
+//add a .txt file in the text area
+    private void jButtonAddFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFileActionPerformed
+        FileNameExtensionFilter filtrado = new FileNameExtensionFilter(".txt", "txt");
+        JFileChooser seleccionarArchivo = new JFileChooser();
+        seleccionarArchivo.setFileFilter(filtrado);
+        if (seleccionarArchivo.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            java.io.File archivo = seleccionarArchivo.getSelectedFile();
+            if (!(archivo.canRead() && archivo.getName().endsWith("txt"))) {
+                JOptionPane.showMessageDialog(null, "El archivo no es valido");
+            } else {
+                this.jTextArea.setText(new FileManagerIn().upLoadTextFile(archivo));
+            }
+        }
+    }//GEN-LAST:event_jButtonAddFileActionPerformed
+    private void reset() {
+        name.setText("");
+        amount.setText("");
+        manualAddBet1.listRestart();
+    }
+//add a bet to the list
+    private void jButtonAddOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddOneActionPerformed
+        if (!name.getText().isBlank() && !amount.getText().isBlank()) {
+            if (Start.listBet == null) {
+                try {
+                    Start.listBet = new ListSimple<>(new Bet(new Client(name.getText()), manualAddBet1.listNum(), Double.valueOf(amount.getText())));
+                    reset();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                Start.listBet.add(new Bet(new Client(name.getText()), manualAddBet1.listNum(), Double.valueOf(amount.getText())));
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "llena las casillas");
+        }
+    }//GEN-LAST:event_jButtonAddOneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amount;
     private javax.swing.JButton bottonBack;
     private javax.swing.JButton jButtonAddFile;
+    private javax.swing.JButton jButtonAddOne;
     private javax.swing.JButton jButtonAnalyze;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea;
+    private com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.ManualAddBet manualAddBet1;
+    private javax.swing.JTextField name;
     // End of variables declaration//GEN-END:variables
 }

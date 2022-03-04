@@ -4,6 +4,8 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import java.awt.Graphics;
 
@@ -18,6 +20,9 @@ public class Start {
                 super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
             }
         };
+    
+    public static ListSimple<Bet> listBet = null;
+    
     public static void main(String[] args) {
         window.setSize(338, 620);
         window.setVisible(true);

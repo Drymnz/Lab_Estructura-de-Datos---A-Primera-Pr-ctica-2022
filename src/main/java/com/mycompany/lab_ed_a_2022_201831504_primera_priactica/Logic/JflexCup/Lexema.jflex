@@ -12,50 +12,53 @@ import java_cup.runtime.*;
 %public
 ENTERO = [0-9]*
 DECIMAL = {ENTERO}*[.]{ENTERO}*
-ESPACIO = [\r|\t|\f|\s|]+
-SALTO = [\n]
+ESPACIO = [\r|\t|\f|\s| ]+
+NOMBRE = [[a-zA-Z] | " "]+
 %%
 /*tercer seccion: reglase lexicas*/
-{ESPACIO }           {/*nada*/}
+
 /*Token*/
-">"                 {
-                     return new Symbol(sym.MENOR,yyline,yycolumn, (yytext()));
+
+","                 {}
+"\n"                {
+                    return new Symbol(sym.SALTO,yyline,yycolumn, (yytext())); 
                     }
-"<"                 {
-                    return new Symbol(sym.MAYOR,yyline,yycolumn, (yytext()));
-                    }
-"<".*">"            {
-                    return new Symbol(sym.NOMBRE,yyline,yycolumn, (yytext())); 
-                    }
-"1"                 {
+
+"1"           {
                     return new Symbol(sym.FIRST,yyline,yycolumn, (yytext()));
                     }
-"2"                 {
+"2"           {
                     return new Symbol(sym.SECOND,yyline,yycolumn, (yytext()));
                     }
-"3"                 {
+"3"           {
                     return new Symbol(sym.THIRD,yyline,yycolumn, (yytext()));
                     }
-"4"                 {
+"4"           {
                     return new Symbol(sym.FOURTH,yyline,yycolumn, (yytext()));
                     }
-"5"                 {
+"5"           {
                     return new Symbol(sym.FIFTH,yyline,yycolumn, (yytext()));
                     }
-"6"                 {
+"6"           {
                     return new Symbol(sym.SIXTH,yyline,yycolumn, (yytext()));
                     }
-"7"                 {
+"7"           {
                     return new Symbol(sym.SEVENTH,yyline,yycolumn, (yytext()));
                     }
-"8"                 {
+"8"          {
                     return new Symbol(sym.EIGHTH,yyline,yycolumn, (yytext()));
                     }
-"9"                 {
+"9"          {
                     return new Symbol(sym.NINTH,yyline,yycolumn, (yytext()));
                     }
-"10"                 {
+"10"          {
                     return new Symbol(sym.TENTH,yyline,yycolumn, (yytext()));
+                    }
+">"                 {
+                    
+                    }
+"<"                 {
+                    
                     }
 {ENTERO}           {
                     return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); 
@@ -63,12 +66,11 @@ SALTO = [\n]
 {DECIMAL}           {
                     return new Symbol(sym.MONTO,yyline,yycolumn, (yytext())); 
                     }
-","                 {}
-{SALTO}            {
-                    return new Symbol(sym.SALTO,yyline,yycolumn, (yytext())); 
+{NOMBRE}            {
+                    return new Symbol(sym.NOMBRE,yyline,yycolumn, (yytext())); 
                     }
-
+{ESPACIO }          {/*nada*/}
 /*ERROR LEXICO*/
 .                   {
-                    //error
+                    System.out.println(yytext());
                     }

@@ -33,6 +33,7 @@ public class ListSimple<T> implements Serializable {
     public void start(T object) {
         this.spotter = new Node(object);
         this.first = this.spotter;
+        this.last = this.spotter;
         counter++;
     }//3 =>O (1)
 
@@ -41,12 +42,14 @@ public class ListSimple<T> implements Serializable {
         if (spotter == null) {//1
             start(object);//1
         } else {
-            Node add = new Node(object, this.spotter);//1
-            this.last.setNext(add);//1
+            Node add = new Node(object);//1
+            this.spotter.setNext(add);//1
+            add.setBack(this.spotter);//1
+            this.spotter = add;//1
             this.last = add;//1
         }
         counter++;//1
-    }//7 => O (1)
+    }//9 => O (1)
 
     //moven back
     public void movenBack() {
@@ -89,4 +92,21 @@ public class ListSimple<T> implements Serializable {
             this.spotter.setNext(null);//1
         }
     }//4 =>O (1)
+
+    public Node getFirst() {
+        return first;
+    }
+
+    public Node getLast() {
+        return last;
+    }
+
+    public Node getSpotter() {
+        return spotter;
+    }
+
+    public void setSpotter(Node spotter) {
+        this.spotter = spotter;
+    }
+    
 }

@@ -7,6 +7,7 @@ package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Client;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 
 /**
  *
@@ -17,14 +18,13 @@ public class guia {
     /*
     code
      */
-    private ListSimple<Bet> listBet;
     private String name;
     private int[] horse = null;
-    private int conter = 10;
+    private int conter = 0;
     private double money = 0;
 
     private void restart() {
-        this.conter = 10;
+        this.conter = 0;
         this.money = 0;
         this.horse = null;
         this.name = "";
@@ -32,34 +32,27 @@ public class guia {
 
     private void insertHorse(int add) {
         if (this.horse == null) {
-            this.horse = new int[this.conter];
-            this.horse[this.conter - 1] = add;
+            this.horse = new int[10];
+            this.horse[this.conter] = add;
+        } else if (this.conter <= 10) {
+            this.horse[this.conter] = add;
         }
-        if (this.conter >= 1) {
-            this.horse[this.conter - 1] = add;
-        }
-        this.conter--;
+        this.conter++;
     }// 5  = > o(1)
 
     private void addBet() {
-        boolean checker = (this.conter < 10) && (this.money > 0) && (this.horse != null) && (!this.name.isBlank());
+        boolean checker = (this.conter <= 10) && (this.money > 0) && (this.horse != null) && (!this.name.isBlank());
         if (checker) {
-            if (listBet==null) {
-                listBet = new ListSimple<>(new Bet(new Client(name),horse,money));
+            if (Start.listBet == null) {
+                Start.listBet = new ListSimple<>(new Bet(new Client(name), horse, money));
             } else {
+                Start.listBet.add(new Bet(new Client(name), horse, money));
             }
-            listBet.add(new Bet(new Client(name),horse,money));
         }
         restart();
     }// 12  = > o(1)
-     public ListSimple<Bet> getListBet() {
-        return listBet;
-    }
-         public void setListBet(ListSimple<Bet> listBet) {
-        this.listBet = listBet;
-    }
+
     /*
     code
      */
-   
 }

@@ -8,32 +8,28 @@ package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int MENOR = 6;
-  public static final int NINTH = 9;
-  public static final int EIGHTH = 10;
-  public static final int TENTH = 8;
-  public static final int MONTO = 3;
-  public static final int THIRD = 15;
-  public static final int SECOND = 16;
-  public static final int SEVENTH = 11;
-  public static final int NOMBRE = 7;
-  public static final int MAYOR = 5;
-  public static final int EOF = 0;
-  public static final int error = 1;
-  public static final int FOURTH = 14;
-  public static final int SIXTH = 12;
-  public static final int FIFTH = 13;
-  public static final int SALTO = 2;
+  public static final int SECOND = 14;
+  public static final int FIRST = 15;
+  public static final int THIRD = 13;
+  public static final int TENTH = 6;
+  public static final int SEVENTH = 9;
   public static final int ENTERO = 4;
-  public static final int FIRST = 17;
+  public static final int EIGHTH = 8;
+  public static final int EOF = 0;
+  public static final int SIXTH = 10;
+  public static final int SALTO = 2;
+  public static final int error = 1;
+  public static final int FOURTH = 12;
+  public static final int FIFTH = 11;
+  public static final int NINTH = 7;
+  public static final int NOMBRE = 5;
+  public static final int MONTO = 3;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "SALTO",
   "MONTO",
   "ENTERO",
-  "MAYOR",
-  "MENOR",
   "NOMBRE",
   "TENTH",
   "NINTH",

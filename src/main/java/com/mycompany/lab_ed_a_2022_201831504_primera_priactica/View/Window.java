@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.AddBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.MainMenu;
 import java.awt.CardLayout;
@@ -37,6 +38,7 @@ public class Window extends JFrame{
     public void goMain() {
         file.show(panel, "MainMenu");
         restoreWindow(338, 620, "Hipodromo");
+        System.out.println(Start.listBet);
     }
     public void goAddBet() {
         file.show(panel, "addBetWindow");

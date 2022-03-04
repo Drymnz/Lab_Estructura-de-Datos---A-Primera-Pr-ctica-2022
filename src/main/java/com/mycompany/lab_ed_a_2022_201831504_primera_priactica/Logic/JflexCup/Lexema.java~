@@ -65,12 +65,13 @@ public class Lexema implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\4\2\22\0\1\1\13\0\1\3\1\0"+
-    "\1\4\1\0\1\5\1\6\1\7\1\10\1\11\1\12"+
-    "\1\13\1\14\1\15\1\16\2\0\1\17\1\0\1\20"+
-    "\75\0\1\1\10\0\1\2\32\0\1\1\u01df\0\1\1"+
-    "\177\0\13\1\35\0\2\2\5\0\1\1\57\0\1\1"+
-    "\240\0\1\1\377\0\u0100\21";
+    "\11\0\1\1\1\2\3\1\22\0\1\3\13\0\1\4"+
+    "\1\0\1\5\1\0\1\6\1\7\1\10\1\11\1\12"+
+    "\1\13\1\14\1\15\1\16\1\17\2\0\1\4\1\0"+
+    "\1\4\2\0\32\20\6\0\32\20\1\0\1\3\10\0"+
+    "\1\1\32\0\1\1\u01df\0\1\1\177\0\13\1\35\0"+
+    "\2\1\5\0\1\1\57\0\1\1\240\0\1\1\377\0"+
+    "\u0100\21";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1536];
@@ -97,12 +98,12 @@ public class Lexema implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\1\1\2\1\3\1\4\1\5\1\1\1\6\1\7"+
+    "\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\1"+
     "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17"+
-    "\1\20\1\21\1\0\1\22";
+    "\1\20\1\5\1\21";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[20];
+    int [] result = new int[19];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -127,12 +128,12 @@ public class Lexema implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\22\0\44\0\22\0\66\0\110\0\132\0\110"+
-    "\0\110\0\110\0\110\0\110\0\110\0\110\0\110\0\154"+
-    "\0\22\0\110\0\154\0\154";
+    "\0\0\0\22\0\44\0\44\0\66\0\22\0\110\0\132"+
+    "\0\154\0\132\0\132\0\132\0\132\0\132\0\132\0\132"+
+    "\0\132\0\176\0\132";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[20];
+    int [] result = new int[19];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -155,14 +156,14 @@ public class Lexema implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\4\1\5\1\6\1\7\1\10\1\11"+
+    "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
     "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
-    "\24\0\2\3\24\0\12\5\7\0\1\5\12\6\7\0"+
-    "\1\5\1\22\11\6\3\0\2\23\1\0\15\23\1\24"+
-    "\1\0";
+    "\1\22\24\0\3\3\17\0\2\3\1\5\14\0\1\22"+
+    "\7\0\12\7\7\0\1\7\12\10\7\0\1\7\1\23"+
+    "\11\10\5\0\1\22\14\0\1\22\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[126];
+    int [] result = new int[144];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -205,11 +206,10 @@ public class Lexema implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\1\1\11\1\1\1\11\14\1\1\11\1\1\1\0"+
-    "\1\1";
+    "\1\1\1\11\3\1\1\11\15\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[20];
+    int [] result = new int[19];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -695,92 +695,87 @@ public class Lexema implements java_cup.runtime.Scanner {
             { return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext()));
             }
             // fall through
-          case 19: break;
+          case 18: break;
           case 2:
-            { //error
+            { System.out.println(yytext());
             }
             // fall through
-          case 20: break;
+          case 19: break;
           case 3:
             { /*nada*/
             }
             // fall through
-          case 21: break;
+          case 20: break;
           case 4:
-            { 
+            { return new Symbol(sym.SALTO,yyline,yycolumn, (yytext()));
+            }
+            // fall through
+          case 21: break;
+          case 5:
+            { return new Symbol(sym.NOMBRE,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 22: break;
-          case 5:
-            { return new Symbol(sym.MONTO,yyline,yycolumn, (yytext()));
+          case 6:
+            { 
             }
             // fall through
           case 23: break;
-          case 6:
-            { return new Symbol(sym.FIRST,yyline,yycolumn, (yytext()));
+          case 7:
+            { return new Symbol(sym.MONTO,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 24: break;
-          case 7:
-            { return new Symbol(sym.SECOND,yyline,yycolumn, (yytext()));
+          case 8:
+            { return new Symbol(sym.FIRST,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 25: break;
-          case 8:
-            { return new Symbol(sym.THIRD,yyline,yycolumn, (yytext()));
+          case 9:
+            { return new Symbol(sym.SECOND,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 26: break;
-          case 9:
-            { return new Symbol(sym.FOURTH,yyline,yycolumn, (yytext()));
+          case 10:
+            { return new Symbol(sym.THIRD,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 27: break;
-          case 10:
-            { return new Symbol(sym.FIFTH,yyline,yycolumn, (yytext()));
+          case 11:
+            { return new Symbol(sym.FOURTH,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 28: break;
-          case 11:
-            { return new Symbol(sym.SIXTH,yyline,yycolumn, (yytext()));
+          case 12:
+            { return new Symbol(sym.FIFTH,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 29: break;
-          case 12:
-            { return new Symbol(sym.SEVENTH,yyline,yycolumn, (yytext()));
+          case 13:
+            { return new Symbol(sym.SIXTH,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 30: break;
-          case 13:
-            { return new Symbol(sym.EIGHTH,yyline,yycolumn, (yytext()));
+          case 14:
+            { return new Symbol(sym.SEVENTH,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 31: break;
-          case 14:
-            { return new Symbol(sym.NINTH,yyline,yycolumn, (yytext()));
+          case 15:
+            { return new Symbol(sym.EIGHTH,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 32: break;
-          case 15:
-            { return new Symbol(sym.MAYOR,yyline,yycolumn, (yytext()));
+          case 16:
+            { return new Symbol(sym.NINTH,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 33: break;
-          case 16:
-            { return new Symbol(sym.MENOR,yyline,yycolumn, (yytext()));
-            }
-            // fall through
-          case 34: break;
           case 17:
             { return new Symbol(sym.TENTH,yyline,yycolumn, (yytext()));
             }
             // fall through
-          case 35: break;
-          case 18:
-            { return new Symbol(sym.NOMBRE,yyline,yycolumn, (yytext()));
-            }
-            // fall through
-          case 36: break;
+          case 34: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
