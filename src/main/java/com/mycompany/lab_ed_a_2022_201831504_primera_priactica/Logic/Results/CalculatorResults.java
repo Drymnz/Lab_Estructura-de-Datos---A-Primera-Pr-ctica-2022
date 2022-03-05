@@ -18,7 +18,6 @@ public class CalculatorResults implements Runnable {
 
     private int[] results;
     private ListSimple<ResultsBet> listResults = null;
-    private ListSimple<Bet> listBet;
     private LoadingScreen screen;
     private JButton button;
 
@@ -29,19 +28,19 @@ public class CalculatorResults implements Runnable {
     }
 
     private void calculator() {
-        if (listBet != null) {//1
+        if (Start.listBet != null) {//1
             int conter = 0;
-            listBet.movenStart();//1
-            boolean begin = (listBet != null) && listBet.getSpotter() != null;//2
+            Start.listBet.movenStart();//1
+            boolean begin = (Start.listBet != null) && Start.listBet.getSpotter() != null;//2
             while (begin) {            //n
-                begin = !(listBet.getSpotter().getNext() == null);//n
-                Bet bet = (Bet) listBet.getSpotter().getObject(); //n
+                begin = !(Start.listBet.getSpotter().getNext() == null);//n
+                Bet bet = (Bet) Start.listBet.getSpotter().getObject(); //n
                 if (listResults != null) {//n
                     listResults.add(new ResultsBet(bet, finalPunctuation(bet.getListHourse(), 0, results.length - 1, results), bet.getListHourse()));//n
                 } else {
                     listResults = new ListSimple<>(new ResultsBet(bet, finalPunctuation(bet.getListHourse(), 0, results.length - 1, results), bet.getListHourse()));//n
                 }
-                listBet.movenNext();
+                Start.listBet.movenNext();
                 conter++;//1
                 screen.setBenchamarkProgress(Start.listBet.getCounter(), conter);//10 => O (1)
             }
@@ -64,5 +63,11 @@ public class CalculatorResults implements Runnable {
         calculator();
         button.setEnabled(true);
     }
+
+    public ListSimple<ResultsBet> getListResults() {
+        return listResults;
+    }
+    
+    
 
 }

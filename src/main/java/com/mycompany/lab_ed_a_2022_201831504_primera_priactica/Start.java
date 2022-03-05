@@ -21,7 +21,7 @@ public class Start {
         Window window = new Window(){
             @Override
             public void paint(Graphics g) {
-                super.paintComponents(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                super.paintComponents(g);
                 repaint();
             }
         };

@@ -93,7 +93,7 @@ public class EntryResults extends javax.swing.JPanel {
             if (window != null) {
                 window.getDeliverResults().getjButtonNext().setEnabled(false);
                 window.getDeliverResults().getLoadingScreen1().setBenchamarkProgress(10, 0);
-                window.goDeliverResults();
+                window.goDeliverResults(manualAddBet1.listNum());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Hay caballos que se repiten");

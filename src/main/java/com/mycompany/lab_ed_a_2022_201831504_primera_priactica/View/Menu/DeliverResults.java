@@ -5,6 +5,7 @@
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results.CalculatorResults;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import javax.swing.JButton;
 
@@ -16,6 +17,8 @@ public class DeliverResults extends javax.swing.JPanel {
 
     private Window window;
     private Thread hilo;
+    private int[] list;
+    private CalculatorResults cal;
 
     /**
      * Creates new form DeliverResults
@@ -105,13 +108,18 @@ public class DeliverResults extends javax.swing.JPanel {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         if (window != null) {
             window.goResults();
-            hilo = null;
+            if (hilo.isAlive()) {
+                hilo.stop();
+            } else {
+                hilo = null;
+            }
         }
     }//GEN-LAST:event_backActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (hilo == null) {
-            hilo = new Thread(new CheckerBut(loadingScreen1, jButtonNext));
+            cal = new CalculatorResults(list,loadingScreen1, jButtonNext);
+            hilo = new Thread(cal);
             if (!hilo.isAlive()) {
                 hilo.start();
             }
@@ -119,7 +127,9 @@ public class DeliverResults extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
-        // TODO add your handling code here:
+         if (window != null) {
+            window.goListResults(cal.getListResults());
+         }
     }//GEN-LAST:event_jButtonNextActionPerformed
 
 
@@ -136,6 +146,10 @@ public class DeliverResults extends javax.swing.JPanel {
 
     public LoadingScreen getLoadingScreen1() {
         return loadingScreen1;
+    }
+
+    public void setList(int[] list) {
+        this.list = list;
     }
 
 }

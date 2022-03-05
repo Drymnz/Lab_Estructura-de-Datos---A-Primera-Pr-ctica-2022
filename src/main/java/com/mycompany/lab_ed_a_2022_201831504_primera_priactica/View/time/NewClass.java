@@ -4,23 +4,41 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.time;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Benjamín de Jesús Pérez Aguilar
  */
 public class NewClass {
+
     public static void main(String[] args) {
-        int[] list = {1,2,3,4,5,6,7,8,9,10};
-        System.out.println(sumTotal(list, 0, 9));
+        int[] list = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        String[] listString = {"benja", "pamela","Benjamin","Pamela","shi","Romero Perez","Benjamin de Jesus","Nemo","Papa pitufo","Oliver","Pedro","Pedro piter","Funado","Eliminado"};
+        print(listString);
+        print(sort(listString));
     }
-        private static int sumTotal(int[] list,int start,int end){
-        if (start == end ) {
-            return list[end];
-        } else {
-            int mid = (start+end) / 2;
-            int left = sumTotal(list, start, mid);
-            int right = sumTotal(list, mid+1, end);
-            return right + left ;
+
+    public static String[] sort(String[] list) {
+        for (int i = 0; i < list.length; i++) {
+            String string = list[i];
+            for (int j = i + 1; j < list.length; j++) {
+                print(list);
+                if (list[i].toLowerCase().compareTo(list[j].toLowerCase()) > 0) {
+                    list[i] = list[j];
+                    list[j] = string;
+                }
+            }
+
         }
+        return list;
     }
+    public static void print(String[] lis){
+        for (int i = 0; i < lis.length; i++) {
+            String li = lis[i];
+            System.out.print(li + ",");
+        }
+        System.out.println("");
+    }
+
 }

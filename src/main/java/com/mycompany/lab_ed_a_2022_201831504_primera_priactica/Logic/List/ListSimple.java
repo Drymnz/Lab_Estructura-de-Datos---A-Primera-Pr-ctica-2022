@@ -82,13 +82,8 @@ public class ListSimple<T> implements Serializable {
         this.first = null;//1
         this.spotter = null;//1
     }//2 =>O (1)
-    //search
-
-    public void serch(T object) {
-
-    }
-
     //remove last
+
     public void removeLast() {
         if (this.first.getNext() == null) {//1
             clearList();//1
@@ -97,25 +92,78 @@ public class ListSimple<T> implements Serializable {
             this.spotter.setNext(null);//1
         }
     }//4 =>O (1)
+//remove spotter
 
     public void removeSpotter() {
-        if (!(this.spotter == null)) {
-            Node next = this.spotter.getNext();//si next null
-            Node back = this.spotter.getBack();
-            if(back!=null)back.setNext(next);
-            if(next!=null)next.setBack(back);
-            if (this.last == this.spotter) {
-                this.last = back;
+        if (!(this.spotter == null)) {//1
+            Node next = this.spotter.getNext();//if next null
+            Node back = this.spotter.getBack();//1
+            if (back != null) {
+                back.setNext(next);//2
             }
-            this.spotter = null;
             if (next != null) {
-                this.spotter = next;
-            } else {
-                this.spotter = back;
+                next.setBack(back);//2
             }
-            counter--;
+            if (this.last == this.spotter) {//1
+                this.last = back;//1
+                this.last.getBack().setNext(back);
+            }
+            this.spotter = null;//1
+            if (next != null) {//1
+                this.spotter = next;//2
+            } else {
+                this.spotter = back;//2
+            }
+            counter--;//1
         }
+    }//17 => o(1)
+
+    /*public void setSpotterP(T insert) {
+    Node newNode = new Node(insert);
+    if (!(this.spotter == null)) {//1
+    Node next = this.spotter.getNext();//if next null
+    Node back = this.spotter.getBack();//1
+    if (back != null) {
+    back.setNext(newNode);//2
+    newNode.setBack(back);//2
     }
+    if (next != null) {
+    next.setBack(newNode);//2
+    newNode.setNext(next);//2
+    }
+    if (this.last == this.spotter) {//1
+    this.last = newNode;//1
+    this.last.getBack().setNext(newNode);//2
+    }
+    this.spotter = newNode;//1
+    } else {
+    this.spotter = newNode;
+    }
+    }*/
+    //to simulate the get
+    public T get(int positions) {//1
+        if (positions >= this.counter) {
+            return null;
+        } else {
+            movenStart();//1
+            for (int i = 0; i < positions; i++) {//n
+                movenNext();//n
+            }
+            return (T) this.spotter.getObject();//1
+        }
+    }//3+ 2n => O (n)
+
+    public Node getNode(int positions) {//1
+        if (positions >= this.counter) {
+            return null;
+        } else {
+            movenStart();//1
+            for (int i = 0; i < positions; i++) {//n
+                movenNext();//n
+            }
+            return this.spotter;//1
+        }
+    }//3+ 2n => O (n)
 
     public Node getFirst() {
         return first;
@@ -136,6 +184,5 @@ public class ListSimple<T> implements Serializable {
     public int getCounter() {
         return counter;
     }
-    
 
 }

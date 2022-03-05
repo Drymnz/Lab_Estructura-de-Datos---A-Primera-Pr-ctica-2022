@@ -6,12 +6,14 @@ package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View;
 
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results.ResultsBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.AddBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.BetVerification;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.DeliverResults;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.EntryResults;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.MainMenu;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.ShowResultTables;
 import java.awt.CardLayout;
 import java.awt.Container;
 import javax.swing.JFrame;
@@ -31,14 +33,16 @@ public class Window extends JFrame {
     private EntryResults results;
     private BetVerification betVerifi;
     private DeliverResults deliverResults;
+    private ShowResultTables table;
 
     public Window() {
-        newWindows();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel = this.getContentPane();
         panel.setLayout(file);
         this.setTitle("Hipodromo");
+        newWindows();
         subWindow();
+       // goMain();
     }
 
     //restore windows, = new
@@ -48,6 +52,7 @@ public class Window extends JFrame {
         results = new EntryResults(this);
         betVerifi = new BetVerification(this);
         deliverResults = new DeliverResults(this);
+        table = new ShowResultTables(this);
     }
 
     //add window
@@ -57,6 +62,7 @@ public class Window extends JFrame {
         panel.add(results, "results");
         panel.add(betVerifi, "BetVerification");
         panel.add(deliverResults, "DeliverResults");
+        panel.add(table, "Table");
     }
 
     /*siwch of window*/
@@ -81,9 +87,16 @@ public class Window extends JFrame {
         restoreWindow(472, 181, "Verificar apuestas");
     }
 
-    public void goDeliverResults() {
+    public void goDeliverResults(int[] list) {
+        deliverResults.setList(list);
         file.show(panel, "DeliverResults");
         restoreWindow(400, 240, "Escanear resultados");
+    }
+    public void goListResults(ListSimple<ResultsBet> listResults) {
+        table.setListResults(listResults);
+        table.getHilo().start();
+        file.show(panel, "Table");
+        restoreWindow(558, 423, "Escanear resultados");
     }
 
     /*end siwch*/
