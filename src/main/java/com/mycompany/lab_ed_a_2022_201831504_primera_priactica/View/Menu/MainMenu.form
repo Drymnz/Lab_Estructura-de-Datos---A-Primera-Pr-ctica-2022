@@ -24,11 +24,9 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonAddBut" max="32767" attributes="0"/>
-                  <Component id="jButtonCloseBut" max="32767" attributes="0"/>
-                  <Component id="JButtonVerifyBet" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButtonIncomeResults" alignment="0" pref="314" max="32767" attributes="0"/>
-                  <Component id="jButtondeLiveryResults" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonAddBut" pref="199" max="32767" attributes="0"/>
+                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="empty" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,15 +37,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonAddBut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonCloseBut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="JButtonVerifyBet" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonIncomeResults" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtondeLiveryResults" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="361" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="empty" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButton1" pref="95" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,37 +49,27 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButtonAddBut">
       <Properties>
-        <Property name="text" type="java.lang.String" value="agregar apuestas"/>
+        <Property name="text" type="java.lang.String" value="Ingreso de apuestas"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddButActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonCloseBut">
+    <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="cierre apuestas"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="JButtonVerifyBet">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Verificar apuestas"/>
+        <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonVerifyBetActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonIncomeResults">
+    <Component class="javax.swing.JButton" name="empty">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingreso de resultados"/>
+        <Property name="text" type="java.lang.String" value="Vaciar listado"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncomeResultsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emptyActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtondeLiveryResults">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Entrega de resultados"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -5,8 +5,11 @@
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results.CalculatorResults;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,13 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class EntryResults extends javax.swing.JPanel {
 
-    private CalculatorResults calculator = null;
     private Thread hilo;
+    private Window window;
 
     /**
      * Creates new form EntryResults
      */
-    public EntryResults() {
+    public EntryResults(Window window) {
+        this.window = window;
         initComponents();
     }
 
@@ -34,14 +38,14 @@ public class EntryResults extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonBack = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
         manualAddBet1 = new com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.ManualAddBet();
         jButton1 = new javax.swing.JButton();
 
-        jButtonBack.setText("Menu principal");
-        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+        Back.setText("Atras");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBackActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
 
@@ -60,7 +64,7 @@ public class EntryResults extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonBack)
+                        .addComponent(Back)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(manualAddBet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -71,7 +75,7 @@ public class EntryResults extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonBack)
+                    .addComponent(Back)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manualAddBet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -79,25 +83,17 @@ public class EntryResults extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        if (Start.window != null)
-            Start.window.goMain();
-    }//GEN-LAST:event_jButtonBackActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        if (window != null)
+            window.goBetVerification();
+    }//GEN-LAST:event_BackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if ((new CheckerBut().sumTotal(manualAddBet1.listNum(), 0, manualAddBet1.listNum().length - 1)) == 55) {
-            if (this.calculator == null) {
-                calculator = new CalculatorResults(manualAddBet1.listNum());
-                this.hilo = new Thread(calculator);
-                if (!hilo.isAlive()) {
-                    hilo.start();
-                }
-            }else{
-                if (JOptionPane.showConfirmDialog(null, "Esta seguro de cambiar el analises") == 0) {
-                    System.out.println("0");
-                }else{
-                    System.out.println("1");
-                }
+            if (window != null) {
+                window.getDeliverResults().getjButtonNext().setEnabled(false);
+                window.getDeliverResults().getLoadingScreen1().setBenchamarkProgress(10, 0);
+                window.goDeliverResults();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Hay caballos que se repiten");
@@ -106,8 +102,8 @@ public class EntryResults extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonBack;
     private com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.ManualAddBet manualAddBet1;
     // End of variables declaration//GEN-END:variables
 }

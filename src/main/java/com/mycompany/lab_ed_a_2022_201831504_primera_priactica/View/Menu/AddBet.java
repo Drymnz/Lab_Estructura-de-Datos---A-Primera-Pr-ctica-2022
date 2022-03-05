@@ -12,6 +12,7 @@ import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup.Le
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.JflexCup.parser;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -29,12 +30,14 @@ public class AddBet extends javax.swing.JPanel {
 
     private Lexema lexema;
     private parser parser;
+    private Window window;
 
     /**
      * Creates new form AddBet
      */
-    public AddBet() {
+    public AddBet(Window window) {
         initComponents();
+        this.window = window;
     }
 
     /**
@@ -57,6 +60,7 @@ public class AddBet extends javax.swing.JPanel {
         amount = new javax.swing.JTextField();
         manualAddBet1 = new com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu.ManualAddBet();
         jButtonAddOne = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         bottonBack.setText("Atras");
         bottonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +98,13 @@ public class AddBet extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Cierre de apuestas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,8 +112,16 @@ public class AddBet extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButtonAnalyze))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(121, 121, 121)
+                                    .addComponent(jButtonAnalyze))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jButtonAddOne, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,20 +133,13 @@ public class AddBet extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(name)
-                                    .addComponent(amount)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(amount)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(bottonBack)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonAddFile)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jButtonAddOne)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,13 +167,15 @@ public class AddBet extends javax.swing.JPanel {
                 .addComponent(manualAddBet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddOne)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 // back to main
     private void bottonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonBackActionPerformed
-        if (Start.window != null)
-            Start.window.goMain();
+        if (window != null)
+            window.goMain();
     }//GEN-LAST:event_bottonBackActionPerformed
 //analyzes and adds the analyzed bets to the list
     private void jButtonAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalyzeActionPerformed
@@ -224,10 +238,21 @@ public class AddBet extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButtonAddOneActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (Start.listBet == null) {
+            JOptionPane.showMessageDialog(null, "Por favor ingres una apuesta");
+        } else if (window != null) {
+            window.getBetVerifi().getjButtonResults().setEnabled(false);
+            window.getBetVerifi().getLoadingScreen1().setBenchamarkProgress(10, 0);
+            window.goBetVerification();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
     private javax.swing.JButton bottonBack;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddFile;
     private javax.swing.JButton jButtonAddOne;
     private javax.swing.JButton jButtonAnalyze;

@@ -113,6 +113,7 @@ public class ListSimple<T> implements Serializable {
             } else {
                 this.spotter = back;
             }
+            counter--;
         }
     }
 
@@ -131,5 +132,10 @@ public class ListSimple<T> implements Serializable {
     public void setSpotter(Node spotter) {
         this.spotter = spotter;
     }
+
+    public int getCounter() {
+        return counter;
+    }
+    
 
 }

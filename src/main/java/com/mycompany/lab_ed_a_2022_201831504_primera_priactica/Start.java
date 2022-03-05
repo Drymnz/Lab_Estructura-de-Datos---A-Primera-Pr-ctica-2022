@@ -14,17 +14,18 @@ import java.awt.Graphics;
  * @author Benjamín de Jesús Pérez Aguilar
  */
 public class Start {
-    public static Window window = new Window(){
-            @Override
-            public void paint(Graphics g) {
-                super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-            }
-        };
     
     public static ListSimple<Bet> listBet = null;
     
     public static void main(String[] args) {
-        window.setSize(338, 620);
+        Window window = new Window(){
+            @Override
+            public void paint(Graphics g) {
+                super.paintComponents(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                repaint();
+            }
+        };
+        window.setSize(223, 213);
         window.setVisible(true);
         window.setLocationRelativeTo(null);//center window
     }

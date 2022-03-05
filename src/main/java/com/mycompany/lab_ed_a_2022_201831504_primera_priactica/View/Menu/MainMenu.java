@@ -5,6 +5,8 @@
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import java.awt.Graphics;
@@ -15,13 +17,14 @@ import java.awt.Graphics;
  */
 public class MainMenu extends javax.swing.JPanel {
 
-    private Thread hilo = new Thread(new CheckerBut());
+    private Window window;
 
     /**
      * Creates new form mainMenu
      */
-    public MainMenu() {
+    public MainMenu(Window window) {
         initComponents();
+        this.window = window;
     }
 
     @Override
@@ -39,37 +42,31 @@ public class MainMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         jButtonAddBut = new javax.swing.JButton();
-        jButtonCloseBut = new javax.swing.JButton();
-        JButtonVerifyBet = new javax.swing.JButton();
-        jButtonIncomeResults = new javax.swing.JButton();
-        jButtondeLiveryResults = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        empty = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(37, 174, 193));
 
-        jButtonAddBut.setText("agregar apuestas");
+        jButtonAddBut.setText("Ingreso de apuestas");
         jButtonAddBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddButActionPerformed(evt);
             }
         });
 
-        jButtonCloseBut.setText("cierre apuestas");
-
-        JButtonVerifyBet.setText("Verificar apuestas");
-        JButtonVerifyBet.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JButtonVerifyBetActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButtonIncomeResults.setText("Ingreso de resultados");
-        jButtonIncomeResults.addActionListener(new java.awt.event.ActionListener() {
+        empty.setText("Vaciar listado");
+        empty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncomeResultsActionPerformed(evt);
+                emptyActionPerformed(evt);
             }
         });
-
-        jButtondeLiveryResults.setText("Entrega de resultados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,11 +75,9 @@ public class MainMenu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAddBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCloseBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JButtonVerifyBet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonIncomeResults, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                    .addComponent(jButtondeLiveryResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonAddBut, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(empty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -90,41 +85,32 @@ public class MainMenu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonAddBut)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCloseBut)
-                .addGap(18, 18, 18)
-                .addComponent(JButtonVerifyBet)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonIncomeResults)
-                .addGap(18, 18, 18)
-                .addComponent(jButtondeLiveryResults)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(empty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddButActionPerformed
-        if (Start.window != null)
-            Start.window.goAddBet();
+        if (window != null)
+            window.goAddBet();
     }//GEN-LAST:event_jButtonAddButActionPerformed
 
-    private void JButtonVerifyBetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonVerifyBetActionPerformed
-        if (!hilo.isAlive()) {
-            hilo.start();
-        } 
-    }//GEN-LAST:event_JButtonVerifyBetActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButtonIncomeResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncomeResultsActionPerformed
-        if (Start.window != null)
-            Start.window.goResults();
-    }//GEN-LAST:event_jButtonIncomeResultsActionPerformed
+    private void emptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyActionPerformed
+        Start.listBet = null;
+    }//GEN-LAST:event_emptyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JButtonVerifyBet;
+    private javax.swing.JButton empty;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddBut;
-    private javax.swing.JButton jButtonCloseBut;
-    private javax.swing.JButton jButtonIncomeResults;
-    private javax.swing.JButton jButtondeLiveryResults;
     // End of variables declaration//GEN-END:variables
 
 }
