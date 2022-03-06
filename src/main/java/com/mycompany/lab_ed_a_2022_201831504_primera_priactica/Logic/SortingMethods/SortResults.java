@@ -20,7 +20,7 @@ public class SortResults {
         if (listResults != null) {//1
             long start = System.nanoTime();;
             int conter = 0;
-            for (int i = 0; i < listResults.getCounter();) {//2
+            for (int i = 1; i < listResults.getCounter();) {//2
                 ResultsBet resultSpotter = listResults.get(i - 1);//n +n
                 ResultsBet resultNext = listResults.get(i);//n+n
                 conter++;
@@ -47,7 +47,7 @@ public class SortResults {
         if (listResults != null) {//1
             long start = System.nanoTime();;
             int conter = 0;
-            for (int i = 0; i < listResults.getCounter();) {//2
+            for (int i = 1; i < listResults.getCounter();) {//2
                 ResultsBet resultSpotter = listResults.get(i - 1);//2n
                 ResultsBet resultNext = listResults.get(i);//2n
                 conter++;
