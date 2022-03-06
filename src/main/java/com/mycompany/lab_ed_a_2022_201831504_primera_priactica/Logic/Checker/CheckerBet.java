@@ -14,26 +14,30 @@ import javax.swing.JButton;
  *
  * @author Benjamín de Jesús Pérez Aguilar
  */
-public class CheckerBut implements Runnable {
+public class CheckerBet implements Runnable {
 
     private final int total = 55;
-    private LoadingScreen screen ;
+    private LoadingScreen screen;
     private JButton button;
 
-    public CheckerBut() {
+    public CheckerBet() {
     }
 
-    public CheckerBut(LoadingScreen screen,JButton button) {
+    public CheckerBet(LoadingScreen screen, JButton button) {
         this.screen = screen;
         this.button = button;
     }
 
     private void checkerBut() {
-        int conter = 0;
+
         if (Start.listBet != null) {
+            int conter = 0;
+            long[] promedio = null;
+            promedio = new long[Start.listBet.getCounter()];
             Start.listBet.movenStart();//1
             boolean begin = (Start.listBet != null) && Start.listBet.getSpotter() != null;//2
             while (begin) {            //n
+                long start = System.nanoTime();
                 begin = !(Start.listBet.getSpotter().getNext() == null);//n
                 Bet bet = (Bet) Start.listBet.getSpotter().getObject(); //n
                 if (sumTotal(bet.getListHourse(), 0, (bet.getListHourse().length - 1)) != this.total) {//n+17
@@ -41,11 +45,27 @@ public class CheckerBut implements Runnable {
                 } else {
                     Start.listBet.movenNext();//n
                 }
+                long end = System.nanoTime() - start;
+                System.out.println("TIEMPO DE PROCESO DE VERIFICACION->" + end);
+                promedio[conter] = end;
                 conter++;//1
                 screen.setBenchamarkProgress(Start.listBet.getCounter(), conter);//10 => O (1)
             }
+            if (promedio != null) {
+                System.out.println("SE TARDO PROMEDIO DE --->" + sumTotalLong(promedio));
+            }
+            System.out.println("LOS PASOS SON -->" + conter);
         }
     }//5n+31 => O(n)
+
+    public long sumTotalLong(long[] list) {
+        long total = 0;
+        for (int i = 0; i < list.length; i++) {
+            total += list[i];
+        }
+        total = (list.length > 0) ? (total / list.length) : 0;
+        return total;
+    }
 
     public int sumTotal(int[] list, int start, int end) {//3
         if (start == end) {//1

@@ -4,7 +4,7 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
-import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results.CalculatorResults;
@@ -89,7 +89,7 @@ public class EntryResults extends javax.swing.JPanel {
     }//GEN-LAST:event_BackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if ((new CheckerBut().sumTotal(manualAddBet1.listNum(), 0, manualAddBet1.listNum().length - 1)) == 55) {
+        if ((new CheckerBet().sumTotal(manualAddBet1.listNum(), 0, manualAddBet1.listNum().length - 1)) == 55) {
             if (window != null) {
                 window.getDeliverResults().getjButtonNext().setEnabled(false);
                 window.getDeliverResults().getLoadingScreen1().setBenchamarkProgress(10, 0);

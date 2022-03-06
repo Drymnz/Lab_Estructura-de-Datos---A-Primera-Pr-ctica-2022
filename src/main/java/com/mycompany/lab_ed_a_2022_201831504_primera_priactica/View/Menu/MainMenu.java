@@ -4,7 +4,7 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
-import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBut;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;

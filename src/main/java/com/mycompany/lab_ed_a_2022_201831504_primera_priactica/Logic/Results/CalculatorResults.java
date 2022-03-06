@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
@@ -32,7 +33,9 @@ public class CalculatorResults implements Runnable {
             int conter = 0;
             Start.listBet.movenStart();//1
             boolean begin = (Start.listBet != null) && Start.listBet.getSpotter() != null;//2
+            long[] promedio = new long[Start.listBet.getCounter()];
             while (begin) {            //n
+                long start = System.nanoTime();
                 begin = !(Start.listBet.getSpotter().getNext() == null);//n
                 Bet bet = (Bet) Start.listBet.getSpotter().getObject(); //n
                 if (listResults != null) {//n
@@ -41,9 +44,16 @@ public class CalculatorResults implements Runnable {
                     listResults = new ListSimple<>(new ResultsBet(bet, finalPunctuation(bet.getListHourse(), 0, results.length - 1, results), bet.getListHourse()));//n
                 }
                 Start.listBet.movenNext();
+                long end = System.nanoTime() - start;
+                System.out.println("TIEMPO DE PROCESO DE RESULUCION->" + end);
+                promedio[conter] = end;
                 conter++;//1
                 screen.setBenchamarkProgress(Start.listBet.getCounter(), conter);//10 => O (1)
             }
+            if (promedio != null) {
+                System.out.println("SE TARDO PROMEDIO DE --->" + (new CheckerBet()).sumTotalLong(promedio));
+            }
+            System.out.println("LOS PASOS SON -->" + conter);
         }
     }//15+5n => O (n)
 
@@ -67,7 +77,5 @@ public class CalculatorResults implements Runnable {
     public ListSimple<ResultsBet> getListResults() {
         return listResults;
     }
-    
-    
 
 }

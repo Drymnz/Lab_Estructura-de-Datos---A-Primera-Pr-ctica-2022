@@ -4,9 +4,11 @@
  */
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.SortingMethods;
 
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Checker.CheckerBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.Node.Node;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results.ResultsBet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 
 /**
  *
@@ -16,40 +18,60 @@ public class SortResults {
 
     public ListSimple<ResultsBet> sortName(ListSimple<ResultsBet> listResults) {
         if (listResults != null) {//1
-            boolean begin = (listResults != null) && listResults.getSpotter() != null;//2
-            for (int i = 0; i < listResults.getCounter(); i++) {//n
-                for (int j = i; j < listResults.getCounter(); j++) {//n²
-                    ResultsBet resultSpotter = listResults.get(j);//n²
-                    ResultsBet resultNext = listResults.get(j + 1);//n²
-                    if ((resultSpotter != null) && (resultNext != null) && (firstGreaterSecondText(resultSpotter.getBet().getPeople().getName(), resultNext.getBet().getPeople().getName()))) {//n²
-                        listResults.getNode(j + 1).setObject(resultSpotter);//n²
-                        listResults.getNode(j).setObject(resultNext);//n²
-                    }
+            long start = System.nanoTime();;
+            int conter = 0;
+            for (int i = 0; i < listResults.getCounter();) {//2
+                ResultsBet resultSpotter = listResults.get(i - 1);//n +n
+                ResultsBet resultNext = listResults.get(i);//n+n
+                conter++;
+                if ((resultSpotter != null) && (resultNext != null) && (firstGreaterSecondText(resultSpotter, resultNext))) {//n+n+n
+                    listResults.getNode(i - 1).setObject(resultNext);//n+n
+                    listResults.getNode(i).setObject(resultSpotter);//n  +n
+                    conter++;
+                } else {
+                    i++;//n
+                    conter++;
+                }
+                if (i == 0) {//n
+                    i = 1;//n
                 }
             }
+            long end = System.nanoTime() - start;
+            System.out.println("TIEMPO PARA ORDENAR --->" + end);
+            System.out.println("LOS PASOS PARA ORDENAR -->" + conter);
         }
         return listResults;
-    }//6n²+n+2 => O(n²)
+    }//12n + 3 => O(n)
 
     public ListSimple<ResultsBet> sortNum(ListSimple<ResultsBet> listResults) {
         if (listResults != null) {//1
-            boolean begin = (listResults != null) && listResults.getSpotter() != null;//2
-            for (int i = 0; i < listResults.getCounter(); i++) {//n
-                for (int j = i; j < listResults.getCounter(); j++) {//n²
-                    ResultsBet resultSpotter = listResults.get(j);//n²
-                    ResultsBet resultNext = listResults.get(j + 1);//n²
-                    if ((resultSpotter != null) && (resultNext != null) && (resultSpotter.getFinalPunctuation() > resultNext.getFinalPunctuation())) {//n²
-                        listResults.getNode(j + 1).setObject(resultSpotter);//n²
-                        listResults.getNode(j).setObject(resultNext);//n²
-                    }
+            long start = System.nanoTime();;
+            int conter = 0;
+            for (int i = 0; i < listResults.getCounter();) {//2
+                ResultsBet resultSpotter = listResults.get(i - 1);//2n
+                ResultsBet resultNext = listResults.get(i);//2n
+                conter++;
+                if ((resultSpotter != null) && (resultNext != null) && (resultSpotter.getFinalPunctuation() > resultNext.getFinalPunctuation())) {//3n
+                    listResults.getNode(i - 1).setObject(resultNext);//2n
+                    listResults.getNode(i).setObject(resultSpotter);//2n  
+                    conter++;
+                } else {
+                    i++;//n
+                    conter++;
+                }
+                if (i == 0) {//n
+                    i = 1;//n
                 }
             }
+            long end = System.nanoTime() - start;
+            System.out.println("TIEMPO PARA ORDENAR --->" + end);
+            System.out.println("LOS PASOS PARA ORDENAR -->" + conter);
         }
         return listResults;
-    }//6n²+n+2 => O(n²)
+    }//12n + 3 => O(n)
 
-    //first text is greater than second
-    private boolean firstGreaterSecondText(String first, String second) {
-        return (first.toLowerCase().compareTo(second.toLowerCase())) >= 0;
+//first text is greater than second
+    private boolean firstGreaterSecondText(ResultsBet resultSpotter, ResultsBet resultNext) {
+        return (resultSpotter.getBet().getPeople().getName().toLowerCase().compareTo(resultNext.getBet().getPeople().getName().toLowerCase())) >= 0;
     }
 }
