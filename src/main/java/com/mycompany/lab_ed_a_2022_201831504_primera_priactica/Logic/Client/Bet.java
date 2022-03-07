@@ -16,11 +16,11 @@ public class Bet implements Serializable{
     private int[] listHourse;
     private double amount;
 
-    public Bet(Client people, int[] listHourse, double amount) {
-        this.people = people;
-        this.listHourse = listHourse;
-        this.amount = amount;
-    }
+    public Bet(Client people, int[] listHourse, double amount) {//3
+        this.people = people;//1
+        this.listHourse = listHourse;//1
+        this.amount = amount;//1
+    }//6 => O (1)
 
     
 
@@ -42,12 +42,12 @@ public class Bet implements Serializable{
     }//1 =>O (1)
 
     public int[] getListHourse() {
-        return listHourse;
-    }
+        return listHourse;//1
+    }////1 => O (1)
 
-    public void setListHourse(int[] listHourse) {
-        this.listHourse = listHourse;
-    }
+    public void setListHourse(int[] listHourse) {//1
+        this.listHourse = listHourse;//1
+    }//1 => O (1)
 
 
     

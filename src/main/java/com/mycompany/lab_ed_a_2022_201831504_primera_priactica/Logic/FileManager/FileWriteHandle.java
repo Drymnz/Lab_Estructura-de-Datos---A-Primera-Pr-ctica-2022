@@ -23,14 +23,14 @@ public class FileWriteHandle implements Runnable{
     public FileWriteHandle(File threadFile, String threadContent) {
         this.threadFile = threadFile;
         this.threadContent = threadContent;
-    }
+    }//2 => o (1)
 
-    public boolean awaitText(File file, String content) {
+    public boolean awaitText(File file, String content) {//2
         try {
-            exit = new FileOutputStream(file);
-            byte[] bytes = content.getBytes();
-            exit.write(bytes);
-            exit.close();
+            exit = new FileOutputStream(file);//1
+            byte[] bytes = content.getBytes();//1
+            exit.write(bytes);//1
+            exit.close();//1
             return true;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FileWriteHandle.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,15 +42,15 @@ public class FileWriteHandle implements Runnable{
 
     @Override
     public void run() {
-        awaitText(threadFile, threadContent);
+        awaitText(threadFile, threadContent);//2
     }
 
-    public void setArchivoHilo(File threadFile) {
-        this.threadFile = threadFile;
+    public void setArchivoHilo(File threadFile) {//2
+        this.threadFile = threadFile;//1
     }
 
-    public void setContenidoHilo(String threadContent) {
-        this.threadContent = threadContent;
+    public void setContenidoHilo(String threadContent) {//1
+        this.threadContent = threadContent;//1
     }
 
 }

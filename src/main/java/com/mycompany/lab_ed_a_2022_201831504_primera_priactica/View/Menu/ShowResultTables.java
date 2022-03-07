@@ -5,6 +5,7 @@
 package com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Menu;
 
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Client.Bet;
+import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.FileManager.ExportFormatCSV;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.List.ListSimple;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.Results.ResultsBet;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Logic.SortingMethods.SortResults;
@@ -12,7 +13,9 @@ import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.Start;
 import com.mycompany.lab_ed_a_2022_201831504_primera_priactica.View.Window;
 import java.io.IOException;
 import java.nio.CharBuffer;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -57,6 +60,7 @@ public class ShowResultTables extends javax.swing.JPanel implements Runnable {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonOrder = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jButtonMain.setText("Menu Principal");
         jButtonMain.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +93,13 @@ public class ShowResultTables extends javax.swing.JPanel implements Runnable {
             }
         });
 
+        jButton1.setText("Export");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +112,8 @@ public class ShowResultTables extends javax.swing.JPanel implements Runnable {
                         .addComponent(jButtonMain)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonOrder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRadioButtonName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -115,7 +128,8 @@ public class ShowResultTables extends javax.swing.JPanel implements Runnable {
                     .addComponent(jButtonMain)
                     .addComponent(jRadioButtonName)
                     .addComponent(jRadioButtonP)
-                    .addComponent(jButtonOrder))
+                    .addComponent(jButtonOrder)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addContainerGap())
@@ -143,9 +157,26 @@ public class ShowResultTables extends javax.swing.JPanel implements Runnable {
         }
     }//GEN-LAST:event_jButtonOrderActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton1.setEnabled(false);
+        FileNameExtensionFilter filtrado = new FileNameExtensionFilter(".csv", "csv");
+        JFileChooser seleccionarArchivo = new JFileChooser();
+        seleccionarArchivo.setFileFilter(filtrado);
+        if (seleccionarArchivo.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            java.io.File archivo = seleccionarArchivo.getSelectedFile();
+            if (!(archivo.canRead() && archivo.getName().endsWith("txt"))) {
+                JOptionPane.showMessageDialog(null, "El archivo no es valido");
+            } else {
+                Thread h = new Thread(new ExportFormatCSV(listResults, archivo,jButton1));
+                h.start();
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonMain;
     private javax.swing.JButton jButtonOrder;
     private javax.swing.JRadioButton jRadioButtonName;

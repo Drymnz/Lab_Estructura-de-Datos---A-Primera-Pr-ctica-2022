@@ -23,13 +23,12 @@ public class CheckerBet implements Runnable {
     public CheckerBet() {
     }
 
-    public CheckerBet(LoadingScreen screen, JButton button) {
-        this.screen = screen;
-        this.button = button;
-    }
+    public CheckerBet(LoadingScreen screen, JButton button) {//2
+        this.screen = screen;//1
+        this.button = button;//1
+    }//4 => O (1)
 
     private void checkerBut() {
-
         if (Start.listBet != null) {
             int conter = 0;
             long[] promedio = null;
@@ -58,15 +57,15 @@ public class CheckerBet implements Runnable {
         }
     }//5n+31 => O(n)
 
-    public long sumTotalLong(long[] list) {
-        long total = 0;
-        for (int i = 0; i < list.length; i++) {
-            total += list[i];
+    public long sumTotalLong(long[] list) {//1
+        long total = 0;//1
+        for (int i = 0; i < list.length; i++) {//n+2
+            total += list[i];//n
         }
-        total = (list.length > 0) ? (total / list.length) : 0;
+        total = (list.length > 0) ? (total / list.length) : 0;//n
         return total;
     }
-
+//3n + 5 => O (1)
     public int sumTotal(int[] list, int start, int end) {//3
         if (start == end) {//1
             return list[end];//1
@@ -82,6 +81,6 @@ public class CheckerBet implements Runnable {
     public void run() {
         checkerBut();//5n+20 => O(n)
         this.button.setEnabled(true);//1
-    }
+    }//5n+20
 
 }

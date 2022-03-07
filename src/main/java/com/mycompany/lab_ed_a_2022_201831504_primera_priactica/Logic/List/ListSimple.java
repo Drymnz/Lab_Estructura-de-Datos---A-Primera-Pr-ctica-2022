@@ -117,29 +117,6 @@ public class ListSimple<T> implements Serializable {
             counter--;//1
         }
     }//17 => o(1)
-
-    /*public void setSpotterP(T insert) {
-    Node newNode = new Node(insert);
-    if (!(this.spotter == null)) {//1
-    Node next = this.spotter.getNext();//if next null
-    Node back = this.spotter.getBack();//1
-    if (back != null) {
-    back.setNext(newNode);//2
-    newNode.setBack(back);//2
-    }
-    if (next != null) {
-    next.setBack(newNode);//2
-    newNode.setNext(next);//2
-    }
-    if (this.last == this.spotter) {//1
-    this.last = newNode;//1
-    this.last.getBack().setNext(newNode);//2
-    }
-    this.spotter = newNode;//1
-    } else {
-    this.spotter = newNode;
-    }
-    }*/
     //to simulate the get
     public T get(int positions) {//1
         if (positions >= this.counter) {
